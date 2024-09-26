@@ -21,13 +21,13 @@ public:
 
     void listUsers() const {
         if (users.empty()) {
-            std::cout << "No users registered.\n";
+            std::cout << "Sem usuários registrados.\n";
             return;
         }
         for (size_t i = 0; i < users.size(); ++i) {
             const User &user = users[i];
             std::cout << "ID: " << user.getId()
-                      << ", Name: " << user.getName()
+                      << ", Nome: " << user.getName()
                       << ", Email: " << user.getEmail() << std::endl;
         }
     }
@@ -45,9 +45,9 @@ public:
         
         if (it != users.end()) {
             users.erase(it, users.end());
-            std::cout << "User successfully removed.\n";
+            std::cout << "Usuário removido com sucesso.\n";
         } else {
-            std::cout << "User not found.\n";
+            std::cout << "Usuário não encontrado.\n";
         }
     }
 };
