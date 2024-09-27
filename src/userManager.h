@@ -50,6 +50,15 @@ public:
             std::cout << "Usuário não encontrado.\n";
         }
     }
+
+    std::string getUserNameById(int id) const {
+        for (const auto &user : users) {
+            if (user.getId() == id) {
+                return user.getName();
+            }
+        }
+        return "";  // Return empty string if user not found
+    }
 };
 
 #endif

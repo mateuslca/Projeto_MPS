@@ -1,56 +1,65 @@
-#ifndef USERINTERFACE_H
-#define USERINTERFACE_H
+#ifndef USERMANAGER_H
+#define USERMANAGER_H
 
-#include "userManager.h"
+#include "user.h"
+#include <vector>
+#include <algorithm>
 #include <iostream>
 
-class UserInterface {
+class UserManager {
 private:
-    UserManager userManager;
+    std::vector<User> users;
+    int nextId;
 
 public:
-    void menu() {
-        int option;
-        do {
-            std::cout << "\nMenu:\n";
-            std::cout << "1. Adicionar Usuário\n";
-            std::cout << "2. Listar Usuário\n";
-            std::cout << "3. Remover Usuário\n";
-            std::cout << "0. Sair\n";
-            std::cout << "Escolha uma Opção: ";
-            std::cin >> option;
+    UserManager() : nextId(1) {}
 
-            switch (option) {
-                case 1: addUser(); break;
-                case 2: listUsers(); break;
-                case 3: removeUser(); break;
-                case 0: std::cout << "Saindo...\n"; break;
-                default: std::cout << "Opção Inválida.\n"; break;
+    void addUser(const std::string &name, const std::string &email) {
+        User user(nextId++, name, email);
+        users.push_back(user);
+    }
+
+    void listUsers() const {
+        if (users.empty()) {
+            std::cout << "Sem usuários registrados.\n";
+            return;
+        }
+        for (size_t i = 0; i < users.size(); ++i) {
+            const User &user = users[i];
+            std::cout << "ID: " << user.getId()
+                      << ", Nome: " << user.getName()
+                      << ", Email: " << user.getEmail() << std::endl;
+        }
+    }
+
+    void removeUser(int id) {
+        struct RemoveById {
+            int id;
+            RemoveById(int id) : id(id) {}
+            bool operator()(const User &user) {
+                return user.getId() == id;
             }
-        } while (option != 0);
+        };
+
+        auto it = std::remove_if(users.begin(), users.end(), RemoveById(id));
+        
+        if (it != users.end()) {
+            users.erase(it, users.end());
+            std::cout << "Usuário removido com sucesso.\n";
+        } else {
+            std::cout << "Usuário não encontrado.\n";
+        }
     }
 
-    void addUser() {
-        std::string name, email;
-        std::cout << "Digite o nome: ";
-        std::cin.ignore();
-        std::getline(std::cin, name);
-        std::cout << "Digite o email: ";
-        std::getline(std::cin, email);
-        userManager.addUser(name, email);
-        std::cout << "Usuário adicionado com sucesso!\n";
-    }
-
-    void listUsers() {
-        userManager.listUsers();
-    }
-
-    void removeUser() {
-        int id;
-        std::cout << "Digite o ID do Usuário para remove-lo: ";
-        std::cin >> id;
-        userManager.removeUser(id);
+    std::string getUserNameById(int id) const {
+        for (const auto &user : users) {
+            if (user.getId() == id) {
+                return user.getName();
+            }
+        }
+        return "";  // Return empty string if user not found
     }
 };
 
 #endif
+
