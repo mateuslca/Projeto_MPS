@@ -7,7 +7,7 @@ User::User(int id, std::string name, std::string email) {
     this->email = email;
 }
 
-int User::getId() {
+int User::getID() {
     return id;
 }
 

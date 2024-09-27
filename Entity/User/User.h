@@ -12,7 +12,7 @@ private:
 public:
     User(int, std::string, std::string);
 
-    int getId();
+    int getID();
     std::string getName();
     std::string getEmail();
 
