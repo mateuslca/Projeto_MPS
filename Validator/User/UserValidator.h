@@ -1,15 +1,15 @@
-#ifndef USERVALIDATOR_H
-#define USERVALIDATOR_H
+#ifndef USER_VALIDATOR_H
+#define USER_VALIDATOR_H
 
 #include <string>
 #include <stdexcept> 
 
-class UserValidator{
+class UserValidator {
     public:
-
-    static bool validateEmail(const std::string& email);
-    static bool validatePassword(const std::string& password);
-
+        UserValidator();
+        
+        static void validateEmail(std::string email);
+        static void validatePassword(std::string password);
 };
 
 #endif
