@@ -2,7 +2,7 @@
 #define USER_H
 
 #include <string>
-
+ 
 class User {
 private:
     int id;
