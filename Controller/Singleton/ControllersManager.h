@@ -19,6 +19,9 @@ class ControllersManager {
         static ControllersManager* getInstance();
         UserController* getUserController();
         ContractController* getContractController();
+
+        void listUsers();
+        void listContracts();
 };
 
 #endif

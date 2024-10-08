@@ -8,8 +8,8 @@ class UserValidator {
     public:
         UserValidator();
         
-        static void validateEmail(std::string email);
-        static void validatePassword(std::string password);
+        static void validateLogin(std::string);
+        static void validatePassword(std::string);
 };
 
 #endif

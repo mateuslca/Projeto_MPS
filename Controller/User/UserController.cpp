@@ -8,12 +8,12 @@ UserController::UserController(UserRepository userRepository) {
     this->userRepository = userRepository;
 }
 
-void UserController::addUser(std::string password, std::string email) {
+void UserController::addUser(std::string login, std::string password) {
     try {
-        UserValidator::validateEmail(email);
+        UserValidator::validateLogin(login);
         UserValidator::validatePassword(password);
 
-        userRepository.addUser(User(getUsers().size(), password, email));
+        userRepository.addUser(User(getUsers().size(), login, password));
     } catch (std::invalid_argument& e) {
         std::cout << e.what() << std::endl;
     }

@@ -1,9 +1,9 @@
 #include "User.h"
 #include <string>
 
-User::User(int id, std::string email, std::string password) {
+User::User(int id, std::string login, std::string password) {
     this->id = id;
-    this->email = email;
+    this->login = login;
     this->password = password;
 }
 
@@ -15,14 +15,14 @@ std::string User::getPassword() {
     return password;
 }
 
-std::string User::getEmail() {
-    return email;
+std::string User::getLogin() {
+    return login;
 }
 
-void User::setPassword(std::string name) {
+void User::setPassword(std::string password) {
     this->password = password;
 }
 
-void User::setEmail(std::string email) {
-    this->email = email;
+void User::setLogin(std::string login) {
+    this->login = login;
 }
