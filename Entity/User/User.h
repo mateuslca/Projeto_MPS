@@ -6,7 +6,7 @@
 class User {
 private:
     int id;
-    std::string email;
+    std::string login;
     std::string password;
 
 public:
@@ -14,10 +14,10 @@ public:
 
     int getID();
     std::string getPassword();
-    std::string getEmail();
+    std::string getLogin();
 
     void setPassword(std::string);
-    void setEmail(std::string);
+    void setLogin(std::string);
 };
 
 #endif

@@ -4,16 +4,16 @@ UserValidator::UserValidator() {
 
 }
 
-void UserValidator::validateEmail(std::string email) {
-    if(email.empty()) {
+void UserValidator::validateLogin(std::string login) {
+    if(login.empty()) {
         throw std::invalid_argument("O email não deve ser vazio");
     }
 
-    if(email.length() > 12) {
+    if(login.length() > 12) {
         throw std::invalid_argument("O email deve ter no máximo 12 caracteres");
     }
 
-    for(char letter : email) {
+    for(char letter : login) {
         if (std::isdigit(letter)){
             throw std::invalid_argument("O email não deve conter números");
         }
@@ -25,7 +25,7 @@ void UserValidator::validatePassword(std::string password){
         throw std::invalid_argument("A senha não deve ser vazia");
     }
 
-    if(8 < password.length() > 128) {
+    if(password.length() < 8 || password.length() > 128) {
         throw std::invalid_argument("A senha deve ter entre 8 e 128 caracteres.");
     }
 
