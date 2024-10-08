@@ -6,18 +6,18 @@
 class User {
 private:
     int id;
-    std::string name;
-    std::string email;
+    std::string login;
+    std::string password;
 
 public:
     User(int, std::string, std::string);
 
     int getID();
-    std::string getName();
-    std::string getEmail();
+    std::string getPassword();
+    std::string getLogin();
 
-    void setName(std::string);
-    void setEmail(std::string);
+    void setPassword(std::string);
+    void setLogin(std::string);
 };
 
 #endif

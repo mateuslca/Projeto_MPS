@@ -6,7 +6,7 @@ UserRepository::UserRepository() {
 }
 
 void UserRepository::addUser(User user) {
-    users.push_back(user);
+    users.push_back(user); 
 }
 
 std::vector<User> UserRepository::getUsers() {
