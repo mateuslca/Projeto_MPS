@@ -1,18 +1,18 @@
 #ifndef FILEREPOSITORYFACTORY_H
 #define FILEREPOSITORYFACTORY_H
 
-#include "IRepositoryFactory.h"
-#include "FileUserRepository.h"   
+#include "FileUserRepository.h" 
+#include "IRepositoryFactory.h"  
 #include "FileContractRepository.h" 
 
 class FileRepositoryFactory : public IRepositoryFactory {
 public:
     UserRepository* createUserRepository() override {
-        return new FileUserRepository(); // Atualize aqui
+        return new FileUserRepository(); 
     }
 
     ContractRepository* createContractRepository() override {
-        return new FileContractRepository(); // Certifique-se de que isso esteja implementado
+        return new FileContractRepository(); 
     }
 };
 
