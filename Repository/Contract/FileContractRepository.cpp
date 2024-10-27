@@ -1,29 +1,26 @@
 #include "FileContractRepository.h"
-#include <fstream>
-#include <sstream>
 
-void FileContractRepository::addContract(const Contract& contract) {
-    // Adiciona o contrato a um vetor ou estrutura interna
+void FileContractRepository::addContract(const Contract &contract)
+{
+    ContractRepository::addContract(contract);
+    saveToFile("contracts.txt"); // Nome do arquivo onde os contratos serão armazenados
 }
 
-std::vector<Contract> FileContractRepository::getContracts() {
-    // Retorna os contratos armazenados
-    return std::vector<Contract>();
-}
-
-void FileContractRepository::loadFromFile(const std::string& filename) {
-    std::ifstream file(filename);
-    std::string line;
-    while (std::getline(file, line)) {
-        // Supondo que você tenha um método Contract::fromString
-        Contract contract = Contract::fromString(line);
-        addContract(contract); // Adiciona contrato ao repositório
+std::vector<Contract> FileContractRepository::getContracts()
+{
+    if (contracts.empty())
+    {
+        loadFromFile("contracts.txt");
     }
+    return ContractRepository::getContracts();
 }
 
-void FileContractRepository::saveToFile(const std::string& filename) {
-    std::ofstream file(filename);
-    for (const auto& contract : getContracts()) {
-        file << contract.toString() << std::endl; // Supondo que você tenha um método toString()
-    }
+void FileContractRepository::loadFromFile(const std::string &filename)
+{
+    // Lógica para carregar contratos de um arquivo
+}
+
+void FileContractRepository::saveToFile(const std::string &filename)
+{
+    // Lógica para salvar contratos em um arquivo
 }
