@@ -12,4 +12,4 @@ public:
     virtual void remove(std::shared_ptr<UserComponent> component) {}
 };
 
-#endif // USER_COMPONENT_H
+#endif
