@@ -1,28 +1,16 @@
 #include "User.h"
-#include <string>
+#include <iostream>
 
-User::User(int id, std::string login, std::string password) {
-    this->id = id;
-    this->login = login;
-    this->password = password;
-}
+User::User(int id, const std::string& login, const std::string& password)
+    : id(id), login(login), password(password) {}
 
-int User::getID() {
-    return id;
-}
+int User::getID() const { return id; }
+std::string User::getPassword() const { return password; }
+std::string User::getLogin() const { return login; }
 
-std::string User::getPassword() {
-    return password;
-}
+void User::setPassword(const std::string& newPassword) { password = newPassword; }
+void User::setLogin(const std::string& newLogin) { login = newLogin; }
 
-std::string User::getLogin() {
-    return login;
-}
-
-void User::setPassword(std::string password) {
-    this->password = password;
-}
-
-void User::setLogin(std::string login) {
-    this->login = login;
+void User::display() const {
+    std::cout << "User ID: " << id << ", Login: " << login << std::endl;
 }

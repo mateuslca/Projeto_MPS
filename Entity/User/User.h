@@ -1,41 +1,26 @@
 #ifndef USER_H
 #define USER_H
 
+#include "UserComponent.h"
 #include <string>
 
-class User {
+class User : public UserComponent {
 private:
     int id;
     std::string login;
     std::string password;
 
 public:
-    User(int id, std::string login, std::string password)
-        : id(id), login(login), password(password) {}
+    User(int id, const std::string& login, const std::string& password);
 
-    int getID() const { return id; }
-    std::string getPassword() const { return password; }
-    std::string getLogin() const { return login; }
+    int getID() const;
+    std::string getPassword() const;
+    std::string getLogin() const;
 
-    void setPassword(const std::string& newPassword) { password = newPassword; }
-    void setLogin(const std::string& newLogin) { login = newLogin; }
+    void setPassword(const std::string& newPassword);
+    void setLogin(const std::string& newLogin);
 
-    // Método para converter um objeto User em uma string
-    std::string toString() const {
-        return std::to_string(id) + ";" + login + ";" + password; // Formato: id;login;password
-    }
-
-    // Método para criar um objeto User a partir de uma string
-    static User fromString(const std::string& str) {
-        size_t firstSeparator = str.find(";");
-        size_t secondSeparator = str.find(";", firstSeparator + 1);
-
-        int userId = std::stoi(str.substr(0, firstSeparator));
-        std::string userLogin = str.substr(firstSeparator + 1, secondSeparator - firstSeparator - 1);
-        std::string userPassword = str.substr(secondSeparator + 1);
-
-        return User(userId, userLogin, userPassword);
-    }
+    void display() const override;
 };
 
-#endif // USER_H
+#endif
