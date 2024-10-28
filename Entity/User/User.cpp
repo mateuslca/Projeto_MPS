@@ -1,4 +1,5 @@
 #include "User.h"
+#include "UserMediator.h"
 #include <iostream>
 
 User::User(int id, const std::string& login, const std::string& password)
@@ -13,4 +14,10 @@ void User::setLogin(const std::string& newLogin) { login = newLogin; }
 
 void User::display() const {
     std::cout << "User ID: " << id << ", Login: " << login << std::endl;
+}
+
+void User::requestPermissionChange(std::shared_ptr<UserGroup> userGroup) {
+    if (mediator) {
+        std::static_pointer_cast<UserMediator>(mediator)->changePermissionPolicy(shared_from_this(), userGroup);
+    }
 }

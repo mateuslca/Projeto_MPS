@@ -6,6 +6,8 @@
 #include <string>
 #include <memory>
 
+// COMPOSITE 
+
 class UserGroup : public UserComponent {
 private:
     std::string groupName;

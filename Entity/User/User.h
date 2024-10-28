@@ -4,7 +4,7 @@
 #include "UserComponent.h"
 #include <string>
 
-class User : public UserComponent {
+class User : public UserComponent, public std::enable_shared_from_this<User> {
 private:
     int id;
     std::string login;
@@ -21,6 +21,8 @@ public:
     void setLogin(const std::string& newLogin);
 
     void display() const override;
+
+    void requestPermissionChange(std::shared_ptr<UserGroup> userGroup);
 };
 
 #endif
