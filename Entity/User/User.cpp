@@ -1,28 +1,23 @@
 #include "User.h"
-#include <string>
+#include "UserMediator.h"
+#include <iostream>
 
-User::User(int id, std::string login, std::string password) {
-    this->id = id;
-    this->login = login;
-    this->password = password;
+User::User(int id, const std::string& login, const std::string& password)
+    : id(id), login(login), password(password) {}
+
+int User::getID() const { return id; }
+std::string User::getPassword() const { return password; }
+std::string User::getLogin() const { return login; }
+
+void User::setPassword(const std::string& newPassword) { password = newPassword; }
+void User::setLogin(const std::string& newLogin) { login = newLogin; }
+
+void User::display() const {
+    std::cout << "User ID: " << id << ", Login: " << login << std::endl;
 }
 
-int User::getID() {
-    return id;
-}
-
-std::string User::getPassword() {
-    return password;
-}
-
-std::string User::getLogin() {
-    return login;
-}
-
-void User::setPassword(std::string password) {
-    this->password = password;
-}
-
-void User::setLogin(std::string login) {
-    this->login = login;
+void User::requestPermissionChange(std::shared_ptr<UserGroup> userGroup) {
+    if (mediator) {
+        std::static_pointer_cast<UserMediator>(mediator)->changePermissionPolicy(shared_from_this(), userGroup);
+    }
 }
